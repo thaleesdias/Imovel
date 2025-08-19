@@ -1,8 +1,8 @@
-import express from "express";
-import router from "./routes/imoveisRouter";
+import dotenv from "dotenv";
 
-const app = express();
+dotenv.config();
+import app from "./app";
 
-app.use(router);
-
-export default app;
+app.listen(3000, () => {
+  console.log("on");
+});

@@ -1,5 +1,8 @@
-import app from "./server";
+import express from "express";
+import router from "./routes/imoveisRouter";
 
-app.listen(3000, () => {
-  console.log("on");
-});
+const app = express();
+
+app.use(router);
+
+export default app;
