@@ -1,5 +1,5 @@
 import Router from "express";
-import { listarTodos, criarImovel } from "../services/imoveis.service.ts";
+import { listarTodos, criarImovel } from "../services/imoveis.service";
 
 const router = Router();
 

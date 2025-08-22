@@ -1,10 +1,12 @@
 import express from "express";
-import router from "./routes/imoveis.router";
+import imoveisRouter from "./routes/imoveis.router";
+import userRouter from "./routes/user.controlle";
 
 const app = express();
 
 app.use(express.json());
 
-app.use(router);
+app.use("/imoveis", imoveisRouter);
+app.use("/user", userRouter);
 
 export default app;
