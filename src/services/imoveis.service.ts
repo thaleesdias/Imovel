@@ -1,21 +1,15 @@
 import pool from "../database/Pool";
 import { QueryResult } from "pg";
+import { Imovel } from "../types/imovel";
 
 export async function listarTodos() {
-  const res = await pool.query("SELECT * FROM imoveis");
-  return res.rows;
+  const result = await pool.query("SELECT * FROM imoveis");
+  return result.rows;
 }
 
-interface imovel {
-  endereco: string;
-  telefone_vendedor?: string;
-  nome_vendedor?: string;
-  status?: string;
-}
-
-export async function criarImovel(imovel: imovel) {
+export async function criarImovel(imovel: Imovel) {
   try {
-    const res: QueryResult = await pool.query(
+    const result: QueryResult = await pool.query(
       `INSERT INTO imoveis (endereco, telefone_vendedor, nome_vendedor, status)
        VALUES ($1, $2, $3, $4)
        RETURNING *;`,
@@ -26,7 +20,7 @@ export async function criarImovel(imovel: imovel) {
         imovel.status ?? "disponivel",
       ]
     );
-    return res; // retorna o resultado pro controller
+    return result; // retorna o resultado pro controller
   } catch (err) {
     console.error("Erro ao criar imóvel:", err);
     throw err; // relança o erro pra ser tratado no controller
