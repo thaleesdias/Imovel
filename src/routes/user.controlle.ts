@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { allUser, createUser, loginUser } from "../services/user.service";
+import { authMiddleware } from "../middlewares/authMiddleware";
 
 const router = Router();
 
-router.get("/", async (req, res) => {
+router.get("/", authMiddleware, async (req, res) => {
   const result = await allUser();
 
   return res.json(result).status(200);

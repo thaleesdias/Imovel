@@ -1,6 +1,7 @@
 import pool from "../database/Pool";
 import { User } from "../types/user";
 import { comparePassword, hashPassword } from "../utils/hash";
+import jwt from "jsonwebtoken";
 
 export async function allUser() {
   const result = await pool.query("SELECT * FROM usuarios;");
@@ -36,9 +37,16 @@ export async function loginUser(email: string, senha: string) {
 
   if (!isValid) throw new Error("Senha incorreta");
 
+  const token = jwt.sign(
+    { id: user.id, email: user.email },
+    process.env.JWT_SECRET!,
+    { expiresIn: "1d" }
+  );
+
   return {
     message: "Login realizado com sucesso",
     user: { nome: user.nome, email: user.email },
+    token,
   };
 }
 

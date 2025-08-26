@@ -20,9 +20,9 @@ export async function criarImovel(imovel: Imovel) {
         imovel.status ?? "disponivel",
       ]
     );
-    return result; // retorna o resultado pro controller
+    return result;
   } catch (err) {
     console.error("Erro ao criar imóvel:", err);
-    throw err; // relança o erro pra ser tratado no controller
+    throw err;
   }
 }

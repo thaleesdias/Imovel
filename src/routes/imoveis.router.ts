@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 router.get("/all", async (req, res) => {
   try {
     const imoveis = await listarTodos();
-    res.json(imoveis); // envia a lista pro cliente
+    res.json(imoveis);
   } catch (error) {
     console.error("Erro ao listar imóveis:", error);
     res.status(500).json({ message: "Erro ao buscar imóveis" });
