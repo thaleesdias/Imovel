@@ -22,9 +22,14 @@ router.post("/create", async (req, res) => {
 
     const result = await createUser(user);
     res.json(result);
-  } catch (err) {
+  } catch (err: any) {
     console.log(err);
-    res.status(500);
+
+    if (err.message === "Email já cadastrado!") {
+      return res.status(400).json({ error: err.message });
+    }
+
+    res.status(500).json({ error: "Erro interno do servidor" });
   }
 });
 
