@@ -1,6 +1,6 @@
 import express from "express";
-import imoveisRouter from "./routes/imoveis.router";
-import userRouter from "./routes/user.controlle";
+import imoveisRouter from "./routes/imoveis.routes";
+import userRouter from "./routes/user.routes";
 
 const app = express();
 

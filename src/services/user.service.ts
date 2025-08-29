@@ -1,13 +1,16 @@
-import { error } from "node:console";
 import pool from "../database/Pool";
 import { User } from "../types/user";
 import { comparePassword, hashPassword } from "../utils/hash";
 import jwt from "jsonwebtoken";
 
 export async function allUser() {
-  const result = await pool.query("SELECT * FROM usuarios;");
+  try {
+    const result = await pool.query("SELECT * FROM usuarios;");
 
-  return result.rows;
+    return result.rows;
+  } catch (err) {
+    console.log({ message: "deu nao" });
+  }
 }
 
 export async function createUser(user: User) {
